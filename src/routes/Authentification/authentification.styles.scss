@@ -1,0 +1,32 @@
+.auth_container {
+    display: flex;
+    max-width: 800px;
+
+    justify-content: space-between;
+    margin: 25px auto;
+
+    @media (max-width: 920px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    @media (max-width: 400px) {
+        display: flex;
+        flex-direction: column;
+        align-items: initial;
+        justify-content: space-between;
+
+
+
+
+    }
+
+
+
+
+
+}

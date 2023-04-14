@@ -1,71 +1,102 @@
 
-
 import { initializeApp } from "firebase/app";
-
 import {
     getAuth,
     signInWithPopup,
     signInWithRedirect,
-    GoogleAuthProvider
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+
+
 } from 'firebase/auth'
+
 import {
     getFirestore,
     doc,
     getDoc,
     setDoc,
 } from 'firebase/firestore'
-import { Await } from "react-router-dom";
+import { SingIn } from "../../componets/sing-in-form/sign-in-form.component";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyCjaKDFA8CIueHrvp96iShTwdYaekOs1dY",
-    authDomain: "buy-fast-db.firebaseapp.com",
-    projectId: "buy-fast-db",
-    storageBucket: "buy-fast-db.appspot.com",
-    messagingSenderId: "562260660934",
-    appId: "1:562260660934:web:3a9b463f3265fb79a8bdc7"
-};
+const fierbaseConfig = {
+    apiKey: "AIzaSyAvOnxgBB-0yiJMsPYTRvCczZnbNJge2E0",
+    authDomain: "buyfast-react.firebaseapp.com",
+    projectId: "buyfast-react",
+    storageBucket: "buyfast-react.appspot.com",
+    messagingSenderId: "227567606270",
+    appId: "1:227567606270:web:4f7f6448a94de86234c8af"
+}
 
-//initializera bazei de date cu configuratia generata de FB
-const app = initializeApp(firebaseConfig)
+const firebaseApp = initializeApp(fierbaseConfig)
 
-//crearea unui provaider Google
-const provider = new GoogleAuthProvider()
-
-provider.setCustomParameters({
-    prompt: 'select_account'
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
+    prompt: 'select_account',
 })
+export const auth = getAuth();
+export const signInWithGooglePopup = function () {
+    return signInWithPopup(auth, googleProvider)
+}
 
-
-export const auth = getAuth()
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider)
+export const signInWithGoogleRedirect = function () {
+    return signInWithRedirect(auth, googleProvider)
+}
 export const db = getFirestore()
-export const createUserDocumentFromAuth = async (userAuth) => {
-    const userDocRef = doc(db, 'users', userAuth.uid);
-    const userSnapshot = await getDoc(userDocRef)
-    console.log(userDocRef, userSnapshot.exists())
 
-    if (!userSnapshot.exists()) {
-        const { displayName, email } = userAuth;
-        const createDateSingIn = new Date()
-        try {
-            await setDoc(userDocRef, {
+export const createUserDoc = async function (getAuth) {
+    if (!getAuth) return
+    try {
+        const createDocRef = doc(db, "users", getAuth.uid)
+        const usersSnapshoot = await getDoc(createDocRef)
+        if (!usersSnapshoot.exists()) {
+            const createdAt = new Date()
+            const { displayName, email } = getAuth
+            await setDoc(createDocRef, {
                 displayName,
                 email,
-                createDateSingIn,
+                createdAt,
+
+
             })
 
+
         }
-        catch (err) {
-            console.error(err.message)
+        else {
+            return createDocRef
         }
+
+
+
+
     }
+    catch (err) {
+        console.error('error creating user document', err.message)
+    }
+}
+
+export const createUserWithEmail = async function (email, password) {
+
+    if (!email || !password) return;
+    return await createUserWithEmailAndPassword(auth, email, password)
+
+
+
+
 
 
 
 }
 
+export const signinWithPasswordAndEmail = async function (email, password) {
+
+
+    return await signInWithEmailAndPassword(auth, email, password)
 
 
 
 
 
+
+
+}
