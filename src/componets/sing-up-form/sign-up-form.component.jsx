@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { createUserWithEmail, createUserDoc } from "../../utils/fierbase/firebase.utils";
 import { FormInput } from "../form-input/form-input.component";
 import { Button } from "../button/button.componet";
-import { UserContext } from "../contexts/user-context";
+// import { UserContext } from "../contexts/user-context";
 import './sign-up-form.styles.scss'
 
 
@@ -17,7 +17,7 @@ const formFilds = {
 export const SingUp = () => {
     const [inputFilds, setInputFilds] = useState(formFilds)
     const { displayName, email, password, confirmPassword } = inputFilds
-    const { currentUser, setCurrentUser } = useContext(UserContext)
+    // const { currentUser } = useContext(UserContext)
 
 
 
@@ -35,8 +35,7 @@ export const SingUp = () => {
             user.displayName = displayName
             const createDoc = await createUserDoc(user)
             setInputFilds(formFilds);
-            setCurrentUser(response)
-            console.log(currentUser, 'Sing Up Form')
+            // console.log(currentUser, 'Sing Up Form')
 
 
         }

@@ -7,7 +7,8 @@ import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signOut
+    signOut,
+    onAuthStateChanged,
 
 
 
@@ -104,3 +105,6 @@ export const signinWithPasswordAndEmail = async function (email, password) {
 }
 
 export const signOutUser = async () => await signOut(auth)
+
+export const onAuthStateChangedListener = (callbackFn) => onAuthStateChanged(auth, callbackFn)
+

@@ -7,12 +7,13 @@ import { UserContext } from '../../componets/contexts/user-context';
 import { signOutUser } from '../../utils/fierbase/firebase.utils';
 
 export const Navigation = () => {
-    const { currentUser, setCurrentUser } = useContext(UserContext)
-    console.log(currentUser, 'Navigation Page')
+    const { currentUser } = useContext(UserContext)
+    // console.log(currentUser, 'Navigation Page')
 
     let mail;
+
     if (currentUser) {
-        mail = currentUser.user.email[0].toUpperCase() + currentUser.user.email.slice(1, currentUser.user.email.indexOf('@')).toLowerCase()
+        mail = currentUser.email[0].toUpperCase() + currentUser.email.slice(1, currentUser.email.indexOf('@')).toLowerCase()
 
     }
 
@@ -23,8 +24,7 @@ export const Navigation = () => {
 
         if (e.target.textContent === 'Sing Out') {
             await signOutUser()
-            setCurrentUser(null)
-            console.log(currentUser)
+            // console.log(currentUser)
         }
     }
 
