@@ -13,7 +13,8 @@ export const SingIn = ({ googleSingIn, redirectSingIn }) => {
 
     const [email, setEmil] = useState('')
     const [password, setPassword] = useState('')
-    const { setCurrentUser } = useContext(UserContext)
+    const { currentUser, setCurrentUser } = useContext(UserContext)
+
 
 
 
@@ -32,7 +33,7 @@ export const SingIn = ({ googleSingIn, redirectSingIn }) => {
             setEmil('')
             setPassword('')
             setCurrentUser(response)
-            console.log('SingIn Render')
+            console.log(currentUser, 'Sing In Form')
 
 
         }

@@ -5,6 +5,8 @@ import { getRedirectResult } from 'firebase/auth'
 import { SingIn } from '../../componets/sing-in-form/sign-in-form.component'
 import { SingUp } from '../../componets/sing-up-form/sign-up-form.component'
 import './authentification.styles.scss'
+import { useContext, useState } from 'react'
+import { UserContext } from '../../componets/contexts/user-context'
 
 
 import {
@@ -20,11 +22,14 @@ import {
 
 export const Authentification = () => {
 
+    const { currentUser, setCurrentUser } = useContext(UserContext)
     useEffect(() => {
         const getRedirectResultFromGoogle = async function () {
             const response = await getRedirectResult(auth)
             if (!response) return
             await createUserDoc(response.user)
+            console.log(response)
+            setCurrentUser(response)
 
         }
         getRedirectResultFromGoogle()
@@ -37,9 +42,12 @@ export const Authentification = () => {
     const signInWithGoogle = async () => {
         try {
 
-            const { user: userObj } = await signInWithGooglePopup();
+            const response = await signInWithGooglePopup();
+            const docUsers = await createUserDoc(response.user)
+            setCurrentUser(response)
 
-            const docUsers = await createUserDoc(userObj)
+
+
 
 
         }

@@ -17,7 +17,7 @@ const formFilds = {
 export const SingUp = () => {
     const [inputFilds, setInputFilds] = useState(formFilds)
     const { displayName, email, password, confirmPassword } = inputFilds
-    const { setCurrentUser } = useContext(UserContext)
+    const { currentUser, setCurrentUser } = useContext(UserContext)
 
 
 
@@ -35,8 +35,8 @@ export const SingUp = () => {
             user.displayName = displayName
             const createDoc = await createUserDoc(user)
             setInputFilds(formFilds);
-            console.log('Sing Up Componet')
             setCurrentUser(response)
+            console.log(currentUser, 'Sing Up Form')
 
 
         }

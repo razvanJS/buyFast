@@ -8,6 +8,7 @@ import { signOutUser } from '../../utils/fierbase/firebase.utils';
 
 export const Navigation = () => {
     const { currentUser, setCurrentUser } = useContext(UserContext)
+    console.log(currentUser, 'Navigation Page')
 
     let mail;
     if (currentUser) {
@@ -23,6 +24,7 @@ export const Navigation = () => {
         if (e.target.textContent === 'Sing Out') {
             await signOutUser()
             setCurrentUser(null)
+            console.log(currentUser)
         }
     }
 
