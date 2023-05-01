@@ -8,6 +8,7 @@ import { Authentification } from './routes/Authentification/authentification.com
 
 
 
+
 const Shop = () => {
   return <h2>Shop Page</h2>
 }

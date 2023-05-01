@@ -1,7 +1,10 @@
 import { Button } from "../button/button.componet"
 import { FormInput } from "../form-input/form-input.component"
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { signinWithPasswordAndEmail } from "../../utils/fierbase/firebase.utils"
+import { UserContext } from "../contexts/user-context"
+
+
 import './sign-in-form.styles.scss'
 
 
@@ -10,6 +13,11 @@ export const SingIn = ({ googleSingIn, redirectSingIn }) => {
 
     const [email, setEmil] = useState('')
     const [password, setPassword] = useState('')
+    const { setCurrentUser } = useContext(UserContext)
+
+
+
+
 
 
     const onChangeHandlerEmail = (event) => setEmil(event.target.value)
@@ -23,7 +31,9 @@ export const SingIn = ({ googleSingIn, redirectSingIn }) => {
             const response = await signinWithPasswordAndEmail(email, password)
             setEmil('')
             setPassword('')
-            console.log(response)
+            setCurrentUser(response)
+            console.log('SingIn Render')
+
 
         }
         catch (err) {
