@@ -5,14 +5,22 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserProvaider } from './componets/contexts/user-context';
+import { ProductsProvaider } from './componets/contexts/products-context';
+import { DropDownProvaider } from './componets/contexts/dropdown-context';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvaider>
-        <App />
-      </UserProvaider>
+        <ProductsProvaider>
+          <DropDownProvaider>
+            <App />
 
+          </DropDownProvaider>
+        </ProductsProvaider>
+      </UserProvaider>
     </BrowserRouter>
   </React.StrictMode>
 );

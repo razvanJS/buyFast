@@ -10,7 +10,9 @@ const BUTTON_TYPE_CLASS = {
 
 
 export const Button = ({ children, buttonType, ...props }) => {
-
+    //children -numele butonului
+    //buttonType-tipul de buton BUTTON_TYPE_CLASS['INVERT'] BUTTONTYPE===STRING 'INVERT'
+    //...PROPS TOATE PROPIETATILE ADAUGATE CA PROPS IN COMPONETA
 
     return (
         <button className={`button-container ${BUTTON_TYPE_CLASS[buttonType]}`} {...props} >{children}</button>
