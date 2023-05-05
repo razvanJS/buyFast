@@ -10,7 +10,7 @@
     top: 90px;
     right: 40px;
     z-index: 5;
-
+    overflow: scroll;
 
     .empty-message {
         font-size: 18px;
@@ -21,17 +21,36 @@
         height: 240px;
         display: flex;
         flex-direction: column;
-        overflow: hidden;
+        // overflow: hidden;
+        overflow-y: visible;
 
     }
 
     button {
-        margin-top: auto;
-        font-size: 1.3vh;
-        transition: .1s all;
 
-        &:hover {
-            font-size: 1.3vh;
+
+        transition: .1s all;
+        opacity: 0.7;
+        margin-top: auto;
+        margin-bottom: -50px;
+        font-size: 10px;
+        color: white;
+
+        a {
+
+            font-size: 12px;
+            text-decoration: none;
+            color: aliceblue;
+
+            &:hover {
+                font-size: 11.3px;
+                color: black;
+            }
         }
+
+
+
     }
+
+
 }

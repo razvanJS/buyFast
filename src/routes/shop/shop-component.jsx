@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { ProductsContext } from '../../componets/contexts/products-context'
 import { Fragment } from 'react'
 import { ProductCard } from '../../componets/products/products.componet'
+
 import "./shop-styles.scss"
 
 export const Shop = () => {

@@ -9,6 +9,7 @@ import { CardIcon } from '../../componets/cart-icon/cart-icon.componet';
 import { CartDropDown } from '../../componets/cart-dropdown/cart-dropdwon.componet';
 import { DropDownContext } from '../../componets/contexts/dropdown-context';
 
+
 export const Navigation = () => {
     const { cartIsOpen, setCart } = useContext(DropDownContext)
     const { currentUser } = useContext(UserContext)
