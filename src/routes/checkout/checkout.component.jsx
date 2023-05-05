@@ -6,7 +6,7 @@ import { CheckoutItem } from "../../componets/checkout-item/checkout-item.compon
 
 
 export const Checkout = () => {
-    const { cartItem } = useContext(DropDownContext)
+    const { cartItem, priceTotal } = useContext(DropDownContext)
 
 
     return (
@@ -26,6 +26,9 @@ export const Checkout = () => {
                     <span>Price</span>
                 </div>
                 <div className="header-block">
+                    <span>Total Price</span>
+                </div>
+                <div className="header-block">
                     <span>Remove</span>
                 </div>
 
@@ -35,7 +38,7 @@ export const Checkout = () => {
                     return <CheckoutItem key={item.id} item={item} />
                 })
             }
-            <span className="total">Total:0</span>
+            <span className="total">Total:${priceTotal}</span>
         </div>
 
     )

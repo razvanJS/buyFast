@@ -9,9 +9,13 @@ import { useNavigate } from 'react-router-dom'
 
 
 export const CartDropDown = () => {
-    const { cartItem } = useContext(DropDownContext)
+    const { cartItem, setCart } = useContext(DropDownContext)
     const navigation = useNavigate()
-    const useNavigationHandler = () => navigation('/checkout')
+    const useNavigationHandler = () => {
+        navigation('/checkout')
+        setCart(false)
+
+    }
 
 
     return (

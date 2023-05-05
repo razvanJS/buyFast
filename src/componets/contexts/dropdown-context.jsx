@@ -7,6 +7,8 @@ export const DropDownContext = createContext({
     addToCart: () => { },
     cartCount: 0,
     setCartCount: () => { },
+    priceTotal: 0,
+    setPriceTotal: () => { }
 
 
 
@@ -58,19 +60,45 @@ const decremetQunatiyHelper = (cartItem, item) => {
 
 const removeCartHelper = (cartItem, item) => removeItemFn(cartItem, item)
 
+const priceUpdateHelper = (cartItem, item) => {
+    const findObjInCartArray = cartItem.find(el => el.id === item.id)
+    if (findObjInCartArray) {
+
+        return cartItem.map(el => item.quaity > 1 ? { ...el, price: item.quantity * item.price } : item)
+    }
+
+
+
+
+}
+
 export const DropDownProvaider = ({ children }) => {
 
     const [cartIsOpen, setCart] = useState(false)
     const [cartItem, setCartItems] = useState([])
     const [cartCount, setCartCount] = useState(0)
-
+    const [priceTotal, setPriceTotal] = useState(0)
 
 
 
     useEffect(() => {
+        const priceUpdate = cartItem.map(value => value.priceTotal = value.quantity * value.price)
+        setCartCount(priceUpdate)
+    }, [cartItem])
+
+    useEffect(() => {
+
         const newCartCount = cartItem.reduce((acc, value) => acc + value.quantity, 0)
         setCartCount(newCartCount)
 
+
+    }, [cartItem])
+
+
+
+    useEffect(() => {
+        const newPriceTotal = cartItem.reduce((acc, value) => acc + value.priceTotal, 0)
+        setPriceTotal(newPriceTotal)
     }, [cartItem])
 
 
@@ -79,7 +107,8 @@ export const DropDownProvaider = ({ children }) => {
     const removeCart = (item) => setCartItems(removeCartHelper(cartItem, item))
 
 
-    const value = { cartIsOpen, setCart, cartItem, addToCart, cartCount, decremetQunatity, removeCart }
+
+    const value = { cartIsOpen, setCart, cartItem, addToCart, cartCount, decremetQunatity, removeCart, priceTotal }
     return (
         <DropDownContext.Provider value={value}>{children}</DropDownContext.Provider>
     )

@@ -52,7 +52,7 @@ export const Navigation = () => {
                         (<Link className='nav-link' onClick={handler} onMouseOver={nameEvent} to='/'>{mail}</Link>)}
                     <CardIcon />
                 </div>
-                {(cartIsOpen && currentUser) ? <CartDropDown /> : ''}
+                {(cartIsOpen) ? <CartDropDown /> : ''}
 
 
             </div>
